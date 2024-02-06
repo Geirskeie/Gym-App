@@ -7,6 +7,7 @@ import Triceps from "../../pages/Triceps"
 import Hamstring from "../../pages/Hamstring"
 import Quads from "../../pages/Quads"
 import Legs from "../../pages/Legs"
+import Core from "../../pages/Core"
 
 
 
@@ -18,7 +19,6 @@ const Stack = createStackNavigator();
 export default function MyStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Chest" component={Chest} />
       <Stack.Screen name="Shoulders" component={Shoulders} />
       <Stack.Screen name="Biceps" component={Biceps} />
@@ -26,8 +26,7 @@ export default function MyStack() {
       <Stack.Screen name="Hamstring" component={Hamstring} />
       <Stack.Screen name="Quads" component={Quads} />
       <Stack.Screen name="Legs" component={Legs} />
-
-
+      <Stack.Screen name="Core" component={Core} />
     </Stack.Navigator>
   );
 }
