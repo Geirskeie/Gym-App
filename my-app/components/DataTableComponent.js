@@ -1,21 +1,44 @@
 import { useState, useEffect } from "react";
 import { DataTable } from "react-native-paper";
 import {View} from "react-native";
+import axios from "axios";
+import ModalComponent from "./ModalComponent";
 
 
-const DataTableComponent = ({ allExercises }) => {
+const DataTableComponent = ({ muscle }) => {
+    const [data, setData] = useState([]);
     const [page, setPage] = useState(0);
     const [numberOfItemsPerPageList] = useState([2, 3, 4]);
     const [itemsPerPage, onItemsPerPageChange] = useState(
         numberOfItemsPerPageList[0]
       );
+    const url = "https://api.api-ninjas.com/v1/exercises?muscle=" + muscle;
+
 
     const from = page * itemsPerPage;
-    const to = Math.min((page + 1) * itemsPerPage, allExercises.length);
+    const to = Math.min((page + 1) * itemsPerPage, data.length);
 
     useEffect(() => {
         setPage(0);
       }, [itemsPerPage]);
+    useEffect(() => {
+        fetchData()
+    },[muscle]);
+
+    const fetchData = async() => {
+        try {
+            const response = await axios.get(url, {
+                headers: {
+                    'X-Api-Key': 'RBZCrQM/BWt8oUS7joBvDg==ndiOIohNXNhAgmUu'
+                }
+            });
+            const selectedItems = response.data.slice(0, 9);
+            setData(selectedItems);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
 
     return (
     <View style={{ backgroundColor: '#dddd', marginTop:5, height:'20', borderRadius:10, elevation:4}}>
@@ -25,18 +48,18 @@ const DataTableComponent = ({ allExercises }) => {
                </DataTable.Header>
 
 
-               {allExercises.slice(from, to).map((exercise) => (
-                    <DataTable.Row key={exercise.id}>
-                      <DataTable.Cell>{exercise.title}</DataTable.Cell>
+               {data.slice(from, to).map((exercise, index) => (
+                    <DataTable.Row key={index}>
+                      <DataTable.Cell><ModalComponent name={exercise.name} text={exercise.instructions} /></DataTable.Cell>
                       <DataTable.Cell style={{ justifyContent: 'flex-end' }}>☆</DataTable.Cell>
                     </DataTable.Row>
                   ))}
 
                  <DataTable.Pagination
                        page={page}
-                       numberOfPages={Math.ceil(allExercises.length / itemsPerPage)}
+                       numberOfPages={Math.ceil(data.length / itemsPerPage)}
                        onPageChange={(page) => setPage(page)}
-                       label={`${from + 1}-${to} of ${allExercises.length}`}
+                       label={`${from + 1}-${to} of ${data.length}`}
                        numberOfItemsPerPageList={numberOfItemsPerPageList}
                        numberOfItemsPerPage={itemsPerPage}
                        onItemsPerPageChange={onItemsPerPageChange}
