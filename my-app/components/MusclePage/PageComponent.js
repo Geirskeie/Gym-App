@@ -1,7 +1,7 @@
 import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { useState } from "react";
 import DataTableComponent from "./DataTableComponent";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar";
 
 const PageComponent = ({ exerciseList, muscle, favorites }) => {
   const [showMostPopular, setShowMostPopular] = useState(false);

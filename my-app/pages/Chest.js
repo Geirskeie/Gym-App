@@ -1,4 +1,4 @@
-import PageComponent from "../components/PageComponent";
+import PageComponent from "../components/MusclePage/PageComponent";
 import { useState } from "react";
 
 const Chest = () => {
