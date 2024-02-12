@@ -1,6 +1,6 @@
 import HomeScreen from "../../pages/HomeScreen";
 import Chest from "../../pages/Chest";
-import MuscleGroups from "../MuscleGroups"
+import MuscleGroups from "../MusclePage/MuscleGroups"
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
