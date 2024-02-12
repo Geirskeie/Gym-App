@@ -5,6 +5,12 @@ import SearchBar from "./SearchBar";
 
 const PageComponent = ({ exerciseList, muscle, favorites }) => {
   const [showMostPopular, setShowMostPopular] = useState(false);
+  const [searchInput, setSearchInput] = useState('');
+
+  const searchQuery = (newText) => {
+      setSearchInput(newText);
+  }
+
 
   return (
     <ScrollView>
@@ -96,9 +102,9 @@ const PageComponent = ({ exerciseList, muscle, favorites }) => {
             )}
           </View>
           <View style={{ marginTop: 30 }}>
-            <SearchBar />
+            <SearchBar searchQuery={searchQuery}/>
           </View>
-          <DataTableComponent muscle={muscle} />
+          <DataTableComponent muscle={muscle} searchInput={searchInput}/>
         </View>
       </View>
     </ScrollView>

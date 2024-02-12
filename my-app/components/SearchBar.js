@@ -2,15 +2,19 @@ import {SafeAreaView, StyleSheet, TextInput} from 'react-native';
 import React from 'react';
 
 
-const SearchBar = () => {
-    const [text, onChangeText] = React.useState('');
+const SearchBar = ({ searchQuery }) => {
+    const [text, setText] = React.useState('');
 
+    handleChangeText = (newText) => {
+        setText(newText);
+        searchQuery(newText);
+    }
 
     return (
         <SafeAreaView>
           <TextInput
             style={styles.input}
-            onChangeText={onChangeText}
+            onChangeText={handleChangeText}
             value={text}
             placeholder="Search"
           />
