@@ -1,6 +1,5 @@
 import PageComponent from "../components/PageComponent";
 import { useState } from "react";
-import ApiNinja from "../components/Api-Calls/ApiNinja";
 
 const Chest = () => {
   const [benchExercises] = useState([
