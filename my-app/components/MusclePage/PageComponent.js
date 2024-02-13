@@ -3,7 +3,7 @@ import { useState } from "react";
 import DataTableComponent from "./DataTableComponent";
 import SearchBar from "../SearchBar";
 
-const PageComponent = ({ exerciseList, muscle, favorites }) => {
+const PageComponent = ({ exerciseList, muscle, favorites, setFavorites }) => {
   const [showMostPopular, setShowMostPopular] = useState(false);
   const [searchInput, setSearchInput] = useState('');
 
@@ -104,7 +104,7 @@ const PageComponent = ({ exerciseList, muscle, favorites }) => {
           <View style={{ marginTop: 30 }}>
             <SearchBar searchQuery={searchQuery}/>
           </View>
-          <DataTableComponent muscle={muscle} searchInput={searchInput}/>
+          <DataTableComponent muscle={muscle} searchInput={searchInput} favorites={favorites} setFavorites={setFavorites}/>
         </View>
       </View>
     </ScrollView>
