@@ -9,12 +9,14 @@ const Chest = () => {
     { id: "4", title: "Machine Flies" },
   ]);
 
-  const [favoritesChestExercises] = useState([{}]);
+  const [favorites, setFavorites] = useState([{}]);
+
   return (
     <PageComponent
       exerciseList={benchExercises}
       muscle={"chest"}
-      favorites={favoritesChestExercises}
+      favorites={favorites}
+      setFavorites = {setFavorites}
     />
   );
 };
