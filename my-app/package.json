@@ -21,6 +21,7 @@
     "react-dom": "18.2.0",
     "react-native": "^0.73.2",
     "react-native-data-table": "^0.2.3",
+    "react-native-element-dropdown": "^2.10.2",
     "react-native-gesture-handler": "^2.15.0",
     "react-native-modal": "^13.0.1",
     "react-native-paper": "^5.12.3",

@@ -7,11 +7,10 @@ const ButtonComponent = ({body, path}) => {
   const { open, setOpen } = useNavigationContext()
 
     const nav = () => {
-      navigation.navigate('MyStack', { screen: path });
+      navigation.navigate('Muscles', { screen: path });
+      console.log(path);
       setOpen(true);
     }
-
-
 
   return (
     <TouchableOpacity onPress = {nav}>

@@ -2,10 +2,13 @@ import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { useState } from "react";
 import DataTableComponent from "./DataTableComponent";
 import SearchBar from "../SearchBar";
+import {useNavigationContext} from "../ContextState/NavigationProvider";
 
 const PageComponent = ({ exerciseList, muscle, favorites, setFavorites }) => {
-  const [showMostPopular, setShowMostPopular] = useState(false);
-  const [searchInput, setSearchInput] = useState('');
+    const [showMostPopular, setShowMostPopular] = useState(false);
+    const [searchInput, setSearchInput] = useState('');
+    const { open, setOpen } = useNavigationContext();
+
 
   const searchQuery = (newText) => {
       setSearchInput(newText);
@@ -14,7 +17,13 @@ const PageComponent = ({ exerciseList, muscle, favorites, setFavorites }) => {
 
   return (
     <ScrollView>
-      <View style={{ flex: 1, alignItems: "center" }}>
+    <TouchableOpacity onPress={() => { setOpen(false)} }>
+      <Text style={{ fontSize:40 }}>←</Text>
+
+    </TouchableOpacity>
+
+      <View style={{ flex: 1, alignItems: "center"}}>
+
         <View style={{ width: "80%" }}>
           <View
             style={{
