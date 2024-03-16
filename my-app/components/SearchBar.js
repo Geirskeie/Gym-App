@@ -5,7 +5,7 @@ import React from 'react';
 const SearchBar = ({ searchQuery }) => {
     const [text, setText] = React.useState('');
 
-    handleChangeText = (newText) => {
+    const handleChangeText = (newText) => {
         setText(newText);
         searchQuery(newText);
     }
@@ -21,7 +21,7 @@ const SearchBar = ({ searchQuery }) => {
         </SafeAreaView>
 
     )
-}
+};
 
 const styles = StyleSheet.create({
   input: {
