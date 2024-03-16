@@ -1,4 +1,4 @@
-import HomeScreen from "../../pages/HomeScreen"
+import HomeScreen from "../WorkoutPage/HomeScreen"
 import Chest from "../../pages/Chest"
 import Shoulders from "../../pages/Shoulders"
 import Back from "../../pages/Back"
@@ -19,9 +19,9 @@ const Stack = createStackNavigator();
 export default function MyStack() {
   return (
     <Stack.Navigator>
+      <Stack.Screen name="Biceps" component={Biceps} />
       <Stack.Screen name="Chest" component={Chest} />
       <Stack.Screen name="Shoulders" component={Shoulders} />
-      <Stack.Screen name="Biceps" component={Biceps} />
       <Stack.Screen name="Triceps" component={Triceps} />
       <Stack.Screen name="Hamstring" component={Hamstring} />
       <Stack.Screen name="Quads" component={Quads} />

@@ -1,4 +1,4 @@
-    import HomeScreen from "../../pages/HomeScreen";
+    import HomeScreen from "../WorkoutPage/HomeScreen";
     import Chest from "../../pages/Chest";
     import MuscleGroups from "../MusclePage/MuscleGroups"
     import MyStack from "./MyStack"
