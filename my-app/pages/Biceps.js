@@ -1,12 +1,24 @@
-import {Text, View} from "react-native"
-
+import PageComponent from "../components/MusclePage/PageComponent";
+import { useState } from "react";
 
 const Biceps = () => {
-    return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text>Top 5 exercises</Text>
-    </View>
-    )
-}
+  const [benchExercises] = useState([
+    { id: "1", title: "Bench press" },
+    { id: "2", title: "Push ups" },
+    { id: "3", title: "Incline Bench press" },
+
+  ]);
+
+  const [favorites, setFavorites] = useState([{}]);
+
+  return (
+    <PageComponent
+      exerciseList={benchExercises}
+      muscle="biceps"
+      favorites={favorites}
+      setFavorites = {setFavorites}
+    />
+  );
+};
 
 export default Biceps;

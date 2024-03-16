@@ -74,10 +74,6 @@ const DataTableComponent = ({ muscle, searchInput, favorites, setFavorites }) =>
         setFilteredData(sorted);
     }
 
-    const toggleFavorite = (id) => {
-
-    }
-
     return (
         <View style={{ backgroundColor: '#dddd', marginTop:5, height:'20', borderRadius:10, elevation:4}}>
            <DataTable>
@@ -96,7 +92,7 @@ const DataTableComponent = ({ muscle, searchInput, favorites, setFavorites }) =>
                       <DataTable.Cell>
                         <ModalComponent name={exercise.name} text={exercise.instructions} />
                       </DataTable.Cell>
-                      <TouchableOpacity onPress={toggleFavorite}>
+                      <TouchableOpacity>
                         <DataTable.Cell style={{ justifyContent: 'flex-end' }}>☆</DataTable.Cell>
                       </TouchableOpacity>
 
