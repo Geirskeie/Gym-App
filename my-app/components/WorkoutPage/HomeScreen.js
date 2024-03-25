@@ -5,12 +5,7 @@ import DayText from "./DayText";
 
 export default function HomeScreen() {
 
-  const [workout1, setWorkout1] = useState("");
-  const [workout2, setWorkout2] = useState("");
-  const [workout3, setWorkout3] = useState("");
-
   const height = 10;
-
 
   const screenHeight = Dimensions.get('window').height;
 
@@ -23,25 +18,23 @@ export default function HomeScreen() {
             <DayText day={days} size={20} top={5} />
             {getWorkout(days, workouts)}
 
-        </View>
+            </View>
 
-        </View>
+            </View>
 
-        </View>
-        )
+            </View>
+            )
         }
 
   const getWorkout = (day, workouts) => {
     // Filter out null workouts first
     const validWorkouts = workouts.filter(workout => workout != null);
-
     return (
     <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 5 }}>
         <WorkoutButton day={day} workoutName={validWorkouts} />
       </View>
     );
   };
-
 
   return (
     <ScrollView>
