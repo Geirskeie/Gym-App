@@ -27,6 +27,7 @@ const WorkoutButton = ({ workoutName = [], day,  }) => {
 
   if (!workoutName) return null;
 
+
   return (
        <TouchableOpacity onPress={() => {
          //Må sjekke ut navigation litt mer
@@ -38,7 +39,7 @@ const WorkoutButton = ({ workoutName = [], day,  }) => {
        }}>
    <View style={{ flexDirection: "row", justifyContent: "space-between", flexWrap: 'wrap' }}>
    {workoutName.map((workout, index) => (
-           <View key={index} style={{
+           <View key={workout} style={{
              backgroundColor: getColor(workout),
              borderRadius: 10,
              borderColor: 'black',
