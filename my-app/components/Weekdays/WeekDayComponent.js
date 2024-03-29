@@ -10,7 +10,8 @@ import { useExerciseContext } from "../ContextState/ExerciseProvider";
 
 const WeekDayComponent = ({ route }) => {
 
-    const { day, workoutName } = route.params;
+    const { day, workout } = route.params;
+    console.log(day);
 
     return (
 
@@ -32,7 +33,7 @@ const WeekDayComponent = ({ route }) => {
           alignItems:"center"
         }}>
           {
-            workoutName.map((muscle, index) => (
+            workout.map((muscle, index) => (
               <GetMuscleGroup key={index} muscle={muscle} />
             ))
           }
