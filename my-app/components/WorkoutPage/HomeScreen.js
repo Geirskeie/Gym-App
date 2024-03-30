@@ -1,37 +1,36 @@
-import { StyleSheet, View, Text, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
+import { View, Text, Dimensions, TouchableOpacity} from 'react-native';
 import { useState } from "react";
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { GestureHandlerRootView,  } from 'react-native-gesture-handler';
-import { DraxProvider, DraxView, DraxList, DraxScrollView } from 'react-native-drax';
+import { DraxProvider, DraxView, DraxScrollView } from 'react-native-drax';
+import SetCustomWeek from "./SetCustomWeek";
+
 
 
 export default function HomeScreen() {
 
   const screenHeight = Dimensions.get('window').height;
-
   const navigation = useNavigation();
 
   const initialItems= [
         { id:"tri", name: "Triceps" },
-
         { id:"bic", name: "Biceps" },
-
         { id:"leg", name: "Legs" },
-
         { id:"sho", name: "Shoulders" },
-
         { id:"che", name: "Chest" },
-
         { id:"bac", name: "Back" },
-
         { id:"cor", name: "Core" },
-
-
   ];
 
-    const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState([
+      {label: "Upper Upper Lower 3 days", value: "uul"},
+      {label: 'Full body - 3 day', value: 'Full body'},
+      {label: 'PPL (Push Pull Legs) 5 days', value: 'ppl5'},
+      {label: 'PPL (Push Pull Legs) 6 days', value: 'ppl6'},
+      {label: 'Arnold Split 6 days', value: 'arnold'},
 
+    ]);
 
   const [zones, setZones] = useState([
    {
@@ -72,6 +71,7 @@ export default function HomeScreen() {
   ]);
 
 
+
   const getColor = (workoutName) => {
         // Simplified approach, focusing on a single workout
         const armWorkouts = ["biceps", "triceps"];
@@ -92,11 +92,11 @@ export default function HomeScreen() {
 
   const navigateToDay = (day, workout) => {
         if (workout.length > 0) {
-        console.log("true");
-        console.log(workout);
-        navigation.navigate('WeekNavigator', { screen: 'Days', params: { day:day, workout:workout } })
+            navigation.navigate('WeekNavigator', { screen: 'Days', params: { day:day, workout:workout } })
         }
-        else {return false}
+        else {
+            return false
+        };
    };
 
   const handleItemDrop = (zoneId, item) => {
@@ -132,10 +132,11 @@ export default function HomeScreen() {
     };
 
   return (
+    <View style={{ flex:1 }}>
+        <SetCustomWeek items={items} setItems={setItems} setZones={setZones}/>
     <GestureHandlerRootView style={{ flex: 1 }}>
       <DraxProvider>
-        <DraxScrollView
-    showsVerticalScrollIndicator={false}>
+        <DraxScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1,flexDirection: 'column', width: "100%" }}>
           <View style={{ flexDirection: "row", justifyContent:"center" }}>
             {initialItems.map((item) => (
@@ -155,7 +156,7 @@ export default function HomeScreen() {
 
               >
                 <DraxView
-                  style={{ height: screenHeight / 10, backgroundColor: 'lightgrey', alignItems: 'center', borderRadius:5, marginTop:10 }}
+                  style={{ height: screenHeight / 11, backgroundColor: 'lightgrey', alignItems: 'center', borderRadius:5, marginTop:10 }}
                   receivingStyle={{ borderColor: 'red', borderWidth: 2}}
                   onReceiveDragDrop={({ dragged: { payload } }) => handleItemDrop(zone.id, payload)}
                 >
@@ -167,7 +168,7 @@ export default function HomeScreen() {
                         onPress={() => removeItemFromZone(zone.id, item.id)}
                         style={{ marginRight: 10, marginBottom: 5 }}
                       >
-                      <View style={{ backgroundColor: getColor(item.name),  padding: 10, borderRadius:10}}>
+                      <View style={{ backgroundColor: getColor(item.name),  padding: 7, borderRadius:10, borderWidth:1, borderColor:"black"}}>
                         <Text style={{ fontSize: 16, justifyContent:"center" }}>
                           {item.name}
                         </Text>
@@ -185,5 +186,6 @@ export default function HomeScreen() {
         </DraxScrollView>
       </DraxProvider>
     </GestureHandlerRootView>
+    </View>
   );
 }
