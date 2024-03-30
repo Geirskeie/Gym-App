@@ -25,7 +25,6 @@ export default function MuscleGroups() {
   return (
 
   <ScrollView style={{ flex: 1 }}>
-        <SearchBar />
         <View style={{ alignItems: 'center'}}>
 
       <Headers text='  Arms 💪' />

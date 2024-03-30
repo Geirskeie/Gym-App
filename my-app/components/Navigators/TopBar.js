@@ -12,7 +12,12 @@
           <Stack.Screen
           name="Muscle Groups"
           component={MuscleGroups}
-          options={{ headerShown: false }}
+          options={{ headerTitleAlign: 'center',
+                     title:'Muscles',
+                     headerTitleStyle: {
+                        fontWeight: 'bold',
+                        },
+                     }}
         />
 
         </Stack.Navigator>
