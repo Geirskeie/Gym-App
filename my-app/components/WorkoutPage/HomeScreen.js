@@ -152,7 +152,7 @@ export default function HomeScreen() {
             {zones.map((zone) => (
               <TouchableOpacity
                 key={zone.id}
-                onPress={() => navigateToDay(zone.name, zone.items.map(item => item.name))}
+                onPress={() => navigateToDay(zone, zone.items.map(item => item.name))}
 
               >
                 <DraxView

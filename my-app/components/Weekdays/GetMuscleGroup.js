@@ -7,7 +7,8 @@ const GetMuscleGroup = ({ muscle }) => {
     const [exercises, setExercises] = useExerciseContext();
 
     const handleAddExercise = (muscle) => {
-        const newExercise = { id: Date.now(), kg: 0, reps: 0, sets: 0 };
+        const newExercise = { id: `${muscle}-${Date.now()}`, kg: 0, reps: 0, sets: 0 };
+        console.log(newExercise);
 
         setExercises(prevExercises => ({
             ...prevExercises,
@@ -36,6 +37,7 @@ const GetMuscleGroup = ({ muscle }) => {
                 <Text style={{ fontSize: 20,  fontWeight:"semibold" }}>{muscle}</Text>
             </View>
                 <TouchableOpacity onPress={() => handleAddExercise(muscle)} style={{ backgroundColor: muscleGroupColor, padding: 8, borderRadius: 10 }}>
+
                     <Text style={{ fontSize: 25 }}>+</Text>
                 </TouchableOpacity>
             </View>

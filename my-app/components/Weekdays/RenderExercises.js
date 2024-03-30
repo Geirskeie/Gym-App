@@ -55,7 +55,7 @@ const RenderExercises = ( { muscle } ) => {
 return (
         <View>
           {exercises[muscle]?.map((exercise, index) => (
-            <View key={exercise.id} style={{ marginBottom: 20 }}>
+            <View key={`${muscle}-${exercise.id}`} style={{ marginBottom: 20 }}>
               {/* Adjusted View usage */}
               <DropDownComponent
                 muscle={muscle}

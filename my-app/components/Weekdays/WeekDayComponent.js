@@ -17,7 +17,7 @@ const WeekDayComponent = ({ route }) => {
 
         <ScrollView>
           <View style={{ backgroundColor:"#353935"	 }}>
-              <Text style={{ fontSize:30, alignSelf:"center", color:"white" }}>{(day)}</Text>
+              <Text style={{ fontSize:30, alignSelf:"center", color:"white" }}>{(day.name)}</Text>
           </View>
 
         <View style={{
@@ -34,7 +34,8 @@ const WeekDayComponent = ({ route }) => {
         }}>
           {
             workout.map((muscle, index) => (
-              <GetMuscleGroup key={index} muscle={muscle} />
+
+              <GetMuscleGroup key={`${day.id}-${muscle}`} muscle={muscle} />
             ))
           }
         </View>

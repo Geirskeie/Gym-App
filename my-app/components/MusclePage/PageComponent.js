@@ -19,11 +19,8 @@ const PageComponent = ({ exerciseList, muscle, favorites, setFavorites }) => {
     <ScrollView>
     <TouchableOpacity onPress={() => { setOpen(false)} }>
       <Text style={{ fontSize:40 }}>←</Text>
-
     </TouchableOpacity>
-
       <View style={{ flex: 1, alignItems: "center"}}>
-
         <View style={{ width: "80%" }}>
           <View
             style={{
