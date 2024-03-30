@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { GestureHandlerRootView,  } from 'react-native-gesture-handler';
-import { DraxProvider, DraxView, DraxList } from 'react-native-drax';
+import { DraxProvider, DraxView, DraxList, DraxScrollView } from 'react-native-drax';
 
 
 export default function HomeScreen() {
@@ -91,8 +91,9 @@ export default function HomeScreen() {
       };
 
   const navigateToDay = (day, workout) => {
-        console.log(day, workout);
-        if (day) {
+        if (workout.length > 0) {
+        console.log("true");
+        console.log(workout);
         navigation.navigate('WeekNavigator', { screen: 'Days', params: { day:day, workout:workout } })
         }
         else {return false}
@@ -115,12 +116,26 @@ export default function HomeScreen() {
     setZones(updatedZones); // Update state
   };
 
-  const handleItemRemove = (zoneId, item) => {
-    const updatedZones = zones.map(zone =>  n )
-  }
+    const removeItemFromZone = (zoneId, itemId) => {
+      // Create a new array of zones, updating the one from which we're removing the item
+      const updatedZones = zones.map(zone => {
+        if (zone.id === zoneId) {
+          // Filter out the item to be removed
+          const updatedItems = zone.items.filter(item => item.id !== itemId);
+          return { ...zone, items: updatedItems };
+        }
+        return zone;
+      });
+
+      // Update the state with the new zones array
+      setZones(updatedZones);
+    };
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <DraxProvider>
+        <DraxScrollView
+    showsVerticalScrollIndicator={false}>
         <View style={{ flex: 1,flexDirection: 'column', width: "100%" }}>
           <View style={{ flexDirection: "row", justifyContent:"center" }}>
             {initialItems.map((item) => (
@@ -147,7 +162,18 @@ export default function HomeScreen() {
                   <Text style={{ marginBottom: 5, fontSize: 20 }}>{zone.name}</Text>
                   <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>
                     {zone.items.map((item) => (
-                      <Text style={{ fontSize: 16, backgroundColor: getColor(item.name), padding: 10, marginRight: 10, marginBottom: 5, borderRadius:10 }} key={item.id}>{item.name}</Text>
+                      <TouchableOpacity
+                        key={item.id}
+                        onPress={() => removeItemFromZone(zone.id, item.id)}
+                        style={{ marginRight: 10, marginBottom: 5 }}
+                      >
+                      <View style={{ backgroundColor: getColor(item.name),  padding: 10, borderRadius:10}}>
+                        <Text style={{ fontSize: 16, justifyContent:"center" }}>
+                          {item.name}
+                        </Text>
+                      </View>
+
+                      </TouchableOpacity>
                     ))}
                   </View>
                 </DraxView>
@@ -156,6 +182,7 @@ export default function HomeScreen() {
             </View>
 
         </View>
+        </DraxScrollView>
       </DraxProvider>
     </GestureHandlerRootView>
   );
