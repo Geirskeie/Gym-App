@@ -17,9 +17,9 @@ export default function HomeScreen() {
         { id:"tri", name: "Triceps" },
         { id:"bic", name: "Biceps" },
         { id:"leg", name: "Legs" },
-        { id:"sho", name: "Shoulders" },
         { id:"che", name: "Chest" },
         { id:"bac", name: "Back" },
+        { id:"sho", name: "Shoulders" },
         { id:"cor", name: "Core" },
   ];
 
@@ -75,8 +75,9 @@ export default function HomeScreen() {
   const getColor = (workoutName) => {
         // Simplified approach, focusing on a single workout
         const armWorkouts = ["biceps", "triceps"];
-        const mainMuscles = ["chest", "back", "shoulders", "core"];
+        const mainMuscles = ["chest", "back"];
         const legWorkouts = ["hamstring", "quads", "legs"];
+        const smallerMuscles = ["shoulders", "core"];
 
         if (armWorkouts.includes(workoutName.toLowerCase())) {
           return "#EEADAD";
@@ -86,6 +87,9 @@ export default function HomeScreen() {
         }
         if (legWorkouts.includes(workoutName.toLowerCase())) {
           return "#F2D280";
+        }
+        if (smallerMuscles.includes(workoutName.toLowerCase())) {
+           return "#568E08";
         }
         return "#b3b3b3"; // Default color if no workout matches
       };
@@ -152,7 +156,7 @@ export default function HomeScreen() {
             {zones.map((zone) => (
               <TouchableOpacity
                 key={zone.id}
-                onPress={() => navigateToDay(zone.name, zone.items.map(item => item.name))}
+                onPress={() => navigateToDay(zone, zone.items.map(item => item.name))}
 
               >
                 <DraxView

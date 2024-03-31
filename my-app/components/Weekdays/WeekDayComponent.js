@@ -13,40 +13,41 @@ const WeekDayComponent = ({ route }) => {
     const { day, workout } = route.params;
     console.log(day);
 
-    return (
+        return (
 
-        <ScrollView>
-          <View style={{ backgroundColor:"#353935"	 }}>
-              <Text style={{ fontSize:30, alignSelf:"center", color:"white" }}>{(day)}</Text>
-          </View>
+            <ScrollView>
+              <View style={{ backgroundColor:"#353935"	 }}>
+                  <Text style={{ fontSize:30, alignSelf:"center", color:"white" }}>{(day.name)}</Text>
+              </View>
 
-        <View style={{
-            flex: 1, alignItems: "center"
-        }}>
-        <View style={{
-          elevation: 4,
-          padding: 10,
-          width: "100%",
-          height: "100%",
-          backgroundColor: "white",
-          borderRadius: 10,
-          alignItems:"center"
-        }}>
-          {
-            workout.map((muscle, index) => (
-              <GetMuscleGroup key={index} muscle={muscle} />
-            ))
-          }
-        </View>
+            <View style={{
+                flex: 1, alignItems: "center"
+            }}>
+            <View style={{
+              elevation: 4,
+              padding: 10,
+              width: "100%",
+              height: "100%",
+              backgroundColor: "white",
+              borderRadius: 10,
+              alignItems:"center"
+            }}>
+              {
+                workout.map((muscle, index) => (
+
+                  <GetMuscleGroup key={`${day.id}-${muscle}`} day={day} muscle={muscle} />
+                ))
+              }
+            </View>
 
 
-          </View>
+              </View>
 
-    </ScrollView>
+        </ScrollView>
 
-    )
+        )
 
-};
+    };
 
 export default WeekDayComponent;
 

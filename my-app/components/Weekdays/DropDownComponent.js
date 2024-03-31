@@ -4,7 +4,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 
 
 
-const DropDownComponent = ({ muscle, selectedValue, onValueChange   }) => {
+const DropDownComponent = ({ day, muscle, selectedValue, onValueChange   }) => {
     const [data, setData ] = useState([]);
 
     const [newExerciseName, setNewExerciseName] = useState("");
@@ -82,7 +82,7 @@ useEffect(() => {
 
 const addNewExercise = () => {
     if (newExerciseName.trim() !== "" && !data.some(e => e.label.toLowerCase() === newExerciseName.trim().toLowerCase())) {
-      const newValue = String(Math.max(...data.map(d => parseInt(d.value, 10))) + 1); // Create a new unique value
+      const newValue = String(Math.max(...data.map(d => parseInt(d.value, 10))) + 1);
       const newExercise = { label: newExerciseName, value: newValue };
       setData(prevData => [...prevData, newExercise]);
 

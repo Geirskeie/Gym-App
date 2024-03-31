@@ -4,14 +4,16 @@ import DropDownComponent from "./DropDownComponent";
 import SimpleTable from "./SimpleTable";
 import { useExerciseContext } from "../ContextState/ExerciseProvider";
 
-const RenderExercises = ( { muscle } ) => {
+const RenderExercises = ( { muscle, day } ) => {
 
     const [exercises, setExercises] = useExerciseContext();
 
     const handleRemoveExercise = (muscle, index) => {
         setExercises(prevExercises => ({
-          ...prevExercises,
-          [muscle]: prevExercises[muscle].filter((_, i) => i !== index)
+            [day.name]: {
+            ...prevExercises[day.name],
+          [muscle]: prevExercises[day.name][muscle].filter((_, i) => i !== index)
+          }
         }));
     };
 
@@ -19,7 +21,7 @@ const RenderExercises = ( { muscle } ) => {
         setExercises(prevExercises => {
             const updatedExercises = { ...prevExercises };
 
-            updatedExercises[muscle] = updatedExercises[muscle].map(exercise => {
+            updatedExercises[day.name][muscle] = updatedExercises[day.name][muscle].map(exercise => {
                 if (exercise.id === exerciseId) {
 
                     return { ...exercise, ...updatedDetails };
@@ -31,22 +33,26 @@ const RenderExercises = ( { muscle } ) => {
         });
     };
 
-    const updateExerciseDropdownValue = (muscle, exerciseId, label) => {
+    const updateExerciseDropdownValue = (muscle, exerciseId, value) => {
       setExercises(prevExercises => {
+        // Copying the previous exercises state
         const updatedExercises = { ...prevExercises };
-        updatedExercises[muscle] = updatedExercises[muscle].map(exercise => {
+        // Finding the right day and muscle group
+        const exercisesForMuscle = updatedExercises[day.name][muscle];
+
+        // Mapping through exercises to update the selected value for the matched exercise
+        const updatedExercisesForMuscle = exercisesForMuscle.map(exercise => {
           if (exercise.id === exerciseId) {
-            const updatedExercise = { ...exercise, selectedDropdownValue: label };
-            return updatedExercise;
+            // Update the exercise with the new selected dropdown value
+            return { ...exercise, selectedDropdownValue: value };
           }
-
           return exercise;
-
         });
-        console.log(updatedExercises);
+
+        // Updating the state with the new exercises array
+        updatedExercises[day.name][muscle] = updatedExercisesForMuscle;
         return updatedExercises;
       });
-      console.log(exerciseId);
     };
 
 
@@ -54,12 +60,13 @@ const RenderExercises = ( { muscle } ) => {
 
 return (
         <View>
-          {exercises[muscle]?.map((exercise, index) => (
-            <View key={exercise.id} style={{ marginBottom: 20 }}>
+          {exercises[day.name]?.[muscle]?.map((exercise, index) => (
+            <View key={`${muscle}-${day.name}-${exercise.id}`} style={{ marginBottom: 20 }}>
               {/* Adjusted View usage */}
               <DropDownComponent
+                day={day}
                 muscle={muscle}
-                selectedValue={exercise.label}
+                selectedValue={exercise.value}
                 onValueChange={(value) => updateExerciseDropdownValue(muscle, exercise.id, value)}
                 onRemove={() => handleRemoveExercise(muscle, index)}
               />
@@ -81,4 +88,3 @@ return (
 };
 
 export default RenderExercises;
-
