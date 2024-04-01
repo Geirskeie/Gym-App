@@ -1,6 +1,6 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { View, Text, Dimensions, ScrollView, TouchableOpacity} from 'react-native';
-import SearchBar from "../SearchBar"
+import SearchBar from "./SearchBar"
 import ButtonComponent from "../ButtonComponent"
 
 const screenHeight = Dimensions.get('window').height;
