@@ -10,7 +10,7 @@ export default function LoginForm() {
 
   return (
     <SafeAreaView style={{ flex:1 }}>
-        <ImageBackground style={{ flex:1, width: '100%', height: '100%' }} resizeMode='cover' source={require("./LoginPageGym1.jpg")}>
+        <ImageBackground style={{ flex:1, width: '100%', height: '100%' }} resizeMode='cover' source={require("./Icons/LoginPageGym1.jpg")}>
             <View style={{ alignItems:"center", paddingTop:100 }}>
                 <Text style={{ fontSize:30, paddingVertical : 40, color:"white", fontWeight:"bold" }}>Logg inn</Text>
                 <View style={{ width:"90%" }}>
@@ -58,9 +58,9 @@ export default function LoginForm() {
                       <View style={{ flex: 1, height: 2, backgroundColor: "grey" }} />
                     </View>
                     <View style={{ flexDirection:"row", justifyContent:"space-evenly", marginTop:5 }}>
-                        <Image source={require("./Facebook.jpg")} />
-                        <Image source={require("./Google.jpg")} />
-                        <Image source={require("./Apple.jpg")} />
+                        <Image source={require("./Icons/Facebook.jpg")} />
+                        <Image source={require("./Icons/Google.jpg")} />
+                        <Image source={require("./Icons/Apple.jpg")} />
                     </View>
 
                     <View style={{  flexDirection:"row", justifyContent:"center", marginTop:70}}>
