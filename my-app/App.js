@@ -4,7 +4,8 @@ import { NavigationProvider } from "./components/ContextState/NavigationProvider
 import  WorkoutProvider  from "./components/ContextState/WorkoutProvider";
 import {ExerciseProvider} from "./components/ContextState/ExerciseProvider";
 import { Provider as PaperProvider } from 'react-native-paper';
-import LoginForm from "./components/LoginPage/LoginForm";
+import LoginForm from "./components/Authentication/LoginForm";
+import SignUpPage from "./components/Authentication/SignupPage";
 
 
 
@@ -15,7 +16,7 @@ export default function App() {
             <NavigationProvider>
                 <NavigationContainer>
                     <ExerciseProvider>
-                        <LoginForm />
+                        <SignUpPage />
                     </ExerciseProvider>
                 </NavigationContainer>
             </NavigationProvider>
